@@ -40,7 +40,7 @@ $(() => {
     // }
 
     c.beginPath()
-    c.moveTo(400,400)
+    c.moveTo(0,0)
     c.lineTo(300,300)
     c.stroke()
 

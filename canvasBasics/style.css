@@ -1,0 +1,12 @@
+body {
+    /* overflow: hidden; */
+
+    margin: 0;
+    /* overflow: hidden; */
+}
+
+canvas {
+    border: 1px solid #000000;
+    background-color: #e9f7ff;
+    /* setting up the height and wdht through javascript */
+}
