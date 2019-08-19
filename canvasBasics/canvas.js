@@ -83,24 +83,63 @@ var c = canvas.getContext('2d');
 // Now to Create and Animate more than 1 cirlcea we use 
 // JS Oject Oriented Programing
 
-function Circle(x, y, dx, dy, radius, color, fStyle) {
+var mouse = {
+    x: undefined,
+    y: undefined
+}
+
+const maxRadius = 40;
+// const minRadius = 2;
+
+var colorOptions = [
+    '#025952',
+    '#FAE3BA',
+    '#F1523E',
+    '#F27B35',
+    '#FCA521'
+]
+
+
+window.addEventListener("mousemove", function (event) {
+    // function will be called
+    // console.log(event);
+
+    mouse.x = event.x;
+    mouse.y = event.y;
+    console.log(mouse);
+})
+
+
+// Seperate code for resizing the browser
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // call to function init()
+    init();
+})
+
+function Circle(x, y, dx, dy, radius) {
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
     this.radius = radius;
+    this.minRadius = radius;
 
-    this.color = color;
-    // thfStyle=this.color;
-    this.fStyle = fStyle;
+    // this.color = color;
+    // // thfStyle=this.color;
+    // this.fStyle = fStyle;
 
+    this.color = colorOptions[Math.floor(Math.random() * colorOptions.length)]
 
     this.draw = function () {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
-        c.strokeStyle = color;
-        c.stroke();
-        c.fillStyle = fStyle;
+        // c.strokeStyle = color;
+        // c.stroke();
+        // c.fillStyle = fStyle;
+        c.fillStyle = this.color;
         c.fill();
     }
 
@@ -115,28 +154,59 @@ function Circle(x, y, dx, dy, radius, color, fStyle) {
         }
         this.y += this.dy;
 
+        // Adding the interactivity portion
+
+        if ((mouse.x - this.x < 50 && mouse.x - this.x > -50) && (mouse.y - this.y < 50 && mouse.y - this.y > -50)) {
+            if (this.radius < maxRadius) {
+                this.radius += 1;
+            }
+        }
+        else if (this.radius > this.minRadius) {
+            this.radius -= 1;
+        }
+
+
         // draw again
         this.draw();
     }
 }
 
-
 var circleArray = [];
-// SourceBuffer,  we will create random new circles and push them into the array
+// circleArray,  we will create random new circles and push them into the array
 
-for (let i = 0; i < 500; i++) {
+// for (let i = 0; i < 800; i++) {
 
-    var radius = 2;
-    var x = Math.random() * (innerWidth - radius * 2) + radius;
-    var y = Math.random() * (innerHeight - radius * 2) + radius;
-    var dx = (Math.random() - 0.5) * 8;
-    var dy = (Math.random() - 0.5) * 8;
+//     var radius = ((Math.random() * 3) + 1)
+//     var x = Math.random() * (innerWidth - radius * 2) + radius;
+//     var y = Math.random() * (innerHeight - radius * 2) + radius;
+//     var dx = (Math.random() - 0.5) * 8;
+//     var dy = (Math.random() - 0.5) * 8;
 
-    var rang = `rgb(${Math.random() * 255}, ${Math.random() * 255} ,${Math.random() * 255})`;
-    circleArray.push(new Circle(x, y, dx, dy, radius, rang, rang))
+//     // old method 
+//     // var rang = `rgb(${Math.random() * 255}, ${Math.random() * 255} ,${Math.random() * 255})`;
+//     circleArray.push(new Circle(x, y, dx, dy, radius))
+
+// }
+// Moving this code into the init function()
+
+function init() {
+
+    circleArray = []; //setting to emty object
+
+    for (let i = 0; i < 800; i++) {
+
+        var radius = ((Math.random() * 4) + 1)
+        var x = Math.random() * (innerWidth - radius * 2) + radius;
+        var y = Math.random() * (innerHeight - radius * 2) + radius;
+        var dx = (Math.random() - 0.5) * 2;
+        var dy = (Math.random() - 0.5) * 2;
+
+        circleArray.push(new Circle(x, y, dx, dy, radius))
+
+    }
+
 }
-
-console.log(circleArray);
+// console.log(circleArray);
 function animate() {
     requestAnimationFrame(animate);
 
@@ -149,4 +219,5 @@ function animate() {
 
 
 }
-animate();
+init();
+animate();   
