@@ -21,7 +21,7 @@ app.use(express.static('public'))
 app.use(favicon(__dirname + '/public/favicon.ico'))
 
 io.on('connection', (socket) => {
-    console.log("Connection established", socket.id)
+    console.log("Connection established with : ", socket.id)
 
     socket.emit('connected')
 
