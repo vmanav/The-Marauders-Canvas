@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>draw-It-Out</title>
+
     <!-- css  -->
     <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
     <!-- socket.io inbuilt <script></script> -->
     <script src="socket.io/socket.io.js"></script>
 
@@ -19,10 +21,37 @@
 
     <!-- my script -->
     <script src="script.js"></script>
-    
-    <canvas id="canvas1"></canvas>
-    <br>
-    <button id="clear">Clear Canvas</button>
+
+    <!-- font awesome 5 kit script -->
+    <script src="https://kit.fontawesome.com/e00a1e7cf5.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container" id="mainDiv">
+        <h1 id="heading">draw-It-Out</h1>
+        <canvas id="canvas1"></canvas>
+        <div class="container-fluid d-flex flex-row justify-content-around align-items-center align-content-center"
+            id="controls">
+            <!-- this is panel for contorls -->
+            <!-- <button id="clear">Clear Canvas</button> -->
+            <button class="btn btn-light" id="clear">Clear Canvas&nbsp; <i class="fas fa-eraser"></i></button>
+            <button data-cvalue="red" class="btn-danger cSelect"></button>
+            <button data-cvalue="blue" class="btn-primary cSelect"></button>
+            <button data-cvalue="green" class="btn-success cSelect"></button>
+            <button data-cvalue="yellow" class="btn-warning cSelect"></button>
+            <button data-cvalue="black" class="btn-dark cSelect"></button>
+            <button class="strokeStyle"><i data-linewidth="1" class="far fa-dot-circle fa-lg"></i></button>
+            <button class="strokeStyle"><i data-linewidth="3" class="far fa-dot-circle fa-2x"></i></button>
+            <button class="strokeStyle"><i data-linewidth="6" class="far fa-dot-circle fa-3x"></i></button>
+
+        </div>
+    </div>
+
+    <!-- <canvas id="canvas1"></canvas>
+    <br> -->
+
 </body>
 
 </html>

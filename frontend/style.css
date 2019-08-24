@@ -1,12 +1,48 @@
 body {
     /* overflow: hidden; */
     margin: 0;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("/bg.jpg");
 }
 
 canvas {
     border: 1px solid #000000;
-    background-color: #e9f7ff;
+    background-color: #FFFFF0;
     margin: auto;
     display: block;
+    border-radius: 15px;
+    border: 2px solid transparent;
     /* setting up the height and wdht through javascript */
+}
+
+.cSelect {
+    border: 1px solid transparent;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+}
+
+#mainDiv {
+    background-color: #1A1C19;
+    height: 100vh;
+    color: white;
+}
+
+#controls {
+    /* border: 1px solid whitesmoke; */
+    margin-top: 1.5rem;
+    /* background-color: lightsalmon; */
+}
+
+.strokeStyle {
+    background-color: transparent;
+    border: 0px;
+    color: white; 
+}
+
+#heading {
+    color: #FFFAFA;
+    text-align: center;
+    text-shadow: 2px 3px 4px rgba(255, 255, 255, 0.41);
+    padding: 1rem;
+    /* margin-bottom: 50px; */
 }
