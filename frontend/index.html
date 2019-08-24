@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>draw-It-Out</title>
+    <title>The Marauder’s Canvas</title>
 
     <!-- css  -->
     <link rel="stylesheet" href="style.css">
@@ -25,18 +25,20 @@
     <!-- font awesome 5 kit script -->
     <script src="https://kit.fontawesome.com/e00a1e7cf5.js"></script>
 
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Caveat:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="container" id="mainDiv">
-        <h1 id="heading">draw-It-Out</h1>
+        <h1 id="heading">The Marauder’s Canvas</h1>
         <canvas id="canvas1"></canvas>
         <div class="container-fluid d-flex flex-row justify-content-around align-items-center align-content-center"
             id="controls">
-            <!-- this is panel for contorls -->
-            <!-- <button id="clear">Clear Canvas</button> -->
-            <button class="btn btn-light" id="clear">Clear Canvas&nbsp; <i class="fas fa-eraser"></i></button>
+
+            <button class="btn" id="clear" style="background-color: #FCEC92;">Clear Canvas&nbsp;<i class="fas fa-eraser"></i></button>
             <button data-cvalue="red" class="btn-danger cSelect"></button>
             <button data-cvalue="blue" class="btn-primary cSelect"></button>
             <button data-cvalue="green" class="btn-success cSelect"></button>
@@ -47,11 +49,11 @@
             <button class="strokeStyle"><i data-linewidth="6" class="far fa-dot-circle fa-3x"></i></button>
 
         </div>
+        <div id="footer">
+            <i class="fas fa-code" style="color: white"></i> with <i class="fas fa-heart" style="color: red"></i> by
+            Manav Verma.
+        </div>
     </div>
-
-    <!-- <canvas id="canvas1"></canvas>
-    <br> -->
-
 </body>
 
 </html>

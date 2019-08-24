@@ -13,9 +13,7 @@ socket.on('connected', () => {
 $(function () {
 
     const canvas = document.getElementById('canvas1')
-    console.log("My Canvas :", canvas);
-    console.log("canvas ke bap ki width :-> ", canvas.parentElement.clientWidth);
-
+   
     canvas.width = 0.8 * canvas.parentElement.clientWidth;
     canvas.height = 0.7 * window.innerHeight;
 
@@ -30,19 +28,13 @@ $(function () {
         c.clearRect(0, 0, canvas.width, canvas.height);
     })
 
-
     canvas.addEventListener('mousedown', (e) => {
 
         pressed = true;
         prevX = e.pageX - canvas.offsetLeft;
         prevY = e.pageY - canvas.offsetTop;
-        // c.moveTo(prevX - 1, prevY - 1);
-        // c.lineTo(prevX, prevY);
-        // c.stroke();
-        // console.log("in mousedown, prevX and PrevY", prevX, prevY);
-
+       
         socket.emit('down', {
-            // pressed: true,
             prevX: prevX,
             prevY: prevY,
             strokeColour: strokeColour,
@@ -62,20 +54,16 @@ $(function () {
     })
 
     canvas.addEventListener('mousemove', (e) => {
-        // console.log("previous Xand Y", prevX, prevY)
-        // console.log("pressed", pressed)
         if (pressed) {
             currX = e.pageX - canvas.offsetLeft;
             currY = e.pageY - canvas.offsetTop;
 
             socket.emit('moving', {
-                // pressed: true,
                 prevX: prevX,
                 prevY: prevY,
                 currX: currX,
                 currY: currY
             })
-            // console.log("socket ke bad ki line")
             prevX = currX;
             prevY = currY;
         }
@@ -98,22 +86,15 @@ $(function () {
     });
 
     document.getElementById('controls').addEventListener('click', (event) => {
-        // console.log(event)
-        // console.log(event.target)
-        // console.log(event.target.dataset)
+
         const cvalue = event.target.dataset.cvalue;
         const linewidth = event.target.dataset.linewidth;
-        // console.log("cvalue is ->", cvalue);
-        // console.log("linewidth ->", linewidth);
         if (cvalue) {
             strokeColour = cvalue;
-            // return;
         }
         if (linewidth) {
             lineWidth = linewidth;
         }
-
-
     })
 
 })

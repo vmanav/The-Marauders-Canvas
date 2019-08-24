@@ -1,8 +1,10 @@
 const express = require('express')
 const socket = require('socket.io')
 const http = require('http')
+const favicon = require('serve-favicon')
 
-const PORT = 3000;
+// heroku port compatibility
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -12,7 +14,11 @@ const io = socket(server)
 
 app.use('/', express.static(__dirname + '/frontend'))
 
-app.use(express.static('public')) //, for favicon
+// `favicon.ico` is in the `public` folder
+app.use(express.static('public'))
+
+//middleware for favicon 
+app.use(favicon(__dirname + '/public/favicon.ico'))
 
 io.on('connection', (socket) => {
     console.log("Connection established", socket.id)
@@ -25,17 +31,11 @@ io.on('connection', (socket) => {
         io.emit('mouseIsDown', mouseDownKaData)
     })
 
-    socket.on('moving', (mouseMoveKaData)=>{
-        console.log("mouseMoveKaData", mouseMoveKaData)
+    socket.on('moving', (mouseMoveKaData) => {
+        // console.log("mouseMoveKaData", mouseMoveKaData)
         io.emit('mouseIsMoving', mouseMoveKaData)
     })
-    // socket.on('mov,ing', (mouseKaData) => {
-        
-    //     console.log(mouseKaData)
-    //     io.emit('mouseIsMoving', mouseKaData)
-    // })
-
-
+    
 })
 
 server.listen(PORT, () => {
