@@ -21,11 +21,15 @@ io.on('connection', (socket) => {
 
 
     socket.on('down', (mouseDownKaData) => {
-        console.log(mouseDownKaData)
+        // console.log(mouseDownKaData)
         io.emit('mouseIsDown', mouseDownKaData)
     })
 
-    // socket.on('moving', (mouseKaData) => {
+    socket.on('moving', (mouseMoveKaData)=>{
+        console.log("mouseMoveKaData", mouseMoveKaData)
+        io.emit('mouseIsMoving', mouseMoveKaData)
+    })
+    // socket.on('mov,ing', (mouseKaData) => {
         
     //     console.log(mouseKaData)
     //     io.emit('mouseIsMoving', mouseKaData)

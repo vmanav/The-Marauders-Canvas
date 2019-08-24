@@ -32,23 +32,23 @@ $(function () {
 
     canvas.addEventListener('mousedown', (e) => {
 
-        // pressed = true;
+        pressed = true;
         prevX = e.pageX - canvas.offsetLeft;
         prevY = e.pageY - canvas.offsetTop;
         // c.moveTo(prevX - 1, prevY - 1);
         // c.lineTo(prevX, prevY);
         // c.stroke();
-        console.log("in mousedown, prevX and PrevY", prevX, prevY);
+        // console.log("in mousedown, prevX and PrevY", prevX, prevY);
 
         socket.emit('down', {
-            pressed: true,
+            // pressed: true,
             prevX: prevX,
             prevY: prevY
         })
     })
 
     socket.on('mouseIsDown', (mouseDownKaData) => {
-        console.log("-->>", mouseDownKaData)
+        // console.log("-->>", mouseDownKaData)
 
         c.beginPath();
         c.moveTo(mouseDownKaData.prevX - 1, mouseDownKaData.prevY - 1);
@@ -56,54 +56,41 @@ $(function () {
         c.stroke();
     })
 
+    canvas.addEventListener('mousemove', (e) => {
+        // console.log("previous Xand Y", prevX, prevY)
+        console.log("pressed", pressed)
+        if (pressed) {
+            currX = e.pageX - canvas.offsetLeft;
+            currY = e.pageY - canvas.offsetTop;
+
+            socket.emit('moving', {
+                // pressed: true,
+                prevX: prevX,
+                prevY: prevY,
+                currX: currX,
+                currY: currY
+            }, ()=>{
+                console.log("this is a callback")
+
+            })
+            console.log("socket ke bad ki line")
+            prevX =currX;
+            prevY= currY;
+        }
+    })
+    socket.on('mouseIsMoving', (mouseMoveKaData) => {
+        c.moveTo(mouseMoveKaData.prevX, mouseMoveKaData.prevY);
+        c.lineTo(mouseMoveKaData.currX, mouseMoveKaData.currY);
+        c.stroke();
 
 
+    })
 
+    canvas.addEventListener('mouseup', (e) => {
+        pressed = false;
+    })
 
-    // socket.on('mouseIsMoving', (mouseMoveKaData) => {
-    //     // console.log("in mouseisMOving", mouseKaData)
-    //     pressed = mouseKaData.pressed;
-    //     if (pressed) {
-    //         c.beginPath();
-    //         prevX = mouseKaData.prevX;
-    //         prevY = mouseKaData.prevY;
-    //         c.moveTo(prevX, prevY);
-    //         c.lineTo(currX, currY);
-    //         c.stroke();
-    //     }
-    // })
-
-    // canvas.addEventListener('mouseup', (e) => {
-    //     pressed = false;
-    // })
-
-    // canvas.addEventListener('mousemove', (e) => {
-    //     // if (pressed) {
-
-    //     //     c.moveTo(prevX, prevY);
-    //     currX = e.pageX - canvas.offsetLeft;
-    //     currY = e.pageY - canvas.offsetTop;
-    //     //     c.lineTo(currX, currY);
-    //     //     c.stroke();
-    //     //     prevX = currX;
-    //     //     prevY = currY;
-    //     // }
-    //     console.log("previous Xand Y", prevX, prevY)
-    //     socket.emit('moving', {
-    //         pressed: true,
-    //         prevX: prevX,
-    //         prevY: prevY,
-    //         currX: currX,
-    //         currY: currY
-    //     }, () => {
-    //         console.log("yaha pahuche kya ?");
-    //         prevX = currX;
-    //         prevY = currY;
-    //     })
-
-
-    // });
-
+    
 })
 
 // canvas.addEventListener('mouseout', (e) => {
