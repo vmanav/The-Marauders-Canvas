@@ -45,7 +45,7 @@ The functionalities supported are stated below :
     ```sh
     npm start
 1. The application is live at http://localhost:3000.
-1. Open the above link and start drwaing.
+1. Open the above link and start drawing.
 
 ---
 
