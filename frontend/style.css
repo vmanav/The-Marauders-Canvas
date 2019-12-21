@@ -49,3 +49,19 @@ canvas {
     text-align: center;
     margin-left: auto;
 }
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: white;
+}
